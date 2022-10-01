@@ -1,0 +1,13 @@
+<div class="page-characters">
+  <section class="page-characters__list">
+    <ul>
+      <li *ngFor="let character of this.charactersData">
+        {{ character.name }}
+
+        <img width="50px" height="50px" [src]="character.thumbnail.path+'.'+character.thumbnail.extension" alt="" />
+      </li>
+    </ul>
+  </section>
+
+  <section class="page-characters__crud"></section>
+</div>

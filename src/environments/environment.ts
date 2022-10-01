@@ -8,13 +8,19 @@ export const environment = {
   apiKeyPublic: 'ae71e575464f7b7b8376cafc050214cc',
   apiKeyPrivate: 'f303c746eb729a45ed4a89abed7d8d41802f38b3',
   apiKey: 'AIzaSyDkga59TIPqHCcg6Sg3SG8m6Jw-gEyp9qI',
-
   firebase: {
+    apiKey: 'AIzaSyDkga59TIPqHCcg6Sg3SG8m6Jw-gEyp9qI',
+
     authDomain: 'characters-marvel-crud.firebaseapp.com',
+
     projectId: 'characters-marvel-crud',
+
     storageBucket: 'characters-marvel-crud.appspot.com',
+
     messagingSenderId: '839360568455',
+
     appId: '1:839360568455:web:47fd2c8b24570755cdac22',
+
     measurementId: 'G-ND7PEZES0D'
   }
 };

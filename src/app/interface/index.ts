@@ -22,3 +22,5 @@ export interface IResultCharacter {
   };
   imgUrl?: string;
 }
+
+export interface ICharacterDb extends Omit<IResultCharacter, 'thumbnail'> {}

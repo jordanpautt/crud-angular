@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { IApiMarvelResponse, IResultCharacter } from '../interface';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-
 @Injectable({
   providedIn: 'root'
 })

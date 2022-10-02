@@ -15,12 +15,13 @@ export interface IDataResponse {
 export interface IResultCharacter {
   id: number;
   name: string;
-  description: string;
   thumbnail: {
     path: string;
     extension: string;
   };
-  imgUrl?: string;
 }
 
-export interface ICharacterDb extends Omit<IResultCharacter, 'thumbnail'> {}
+export interface ICharacterDb extends Omit<IResultCharacter, 'thumbnail'> {
+  idDoc?: string;
+  imgUrl: string;
+}

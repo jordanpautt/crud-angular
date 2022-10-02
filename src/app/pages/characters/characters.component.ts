@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CharactersService } from 'src/app/services/characters.service';
+import { CharactersApiService } from 'src/app/services/characters.service';
 import { ICharacterDb, IResultCharacter } from 'src/app/interface';
 import { CharactersFirebaseService } from 'src/app/services/characters-firebase.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-characters',
@@ -9,31 +10,41 @@ import { CharactersFirebaseService } from 'src/app/services/characters-firebase.
   styleUrls: ['./characters.component.scss']
 })
 export class CharactersComponent implements OnInit {
-  charactersData: IResultCharacter[] = [];
+  charactersDataApi$!: Observable<IResultCharacter[]>;
+  charactersFavorite: ICharacterDb[] = [];
 
-  charactersDb: ICharacterDb[] = [];
   constructor(
-    private charactersService: CharactersService,
-    private charactersFirebaseService: CharactersFirebaseService
+    private charactersApiService: CharactersApiService,
+    private charactersDbService: CharactersFirebaseService
   ) {}
 
   ngOnInit(): void {
-    this.charactersFirebaseService
-      .getAll()
-      .subscribe((data) => (this.charactersDb = data));
-
-    this.charactersService.readCharacters().subscribe((data) => {
-      this.charactersData = data;
+    this.charactersDbService.listenCharactersDb().subscribe((data) => {
+      this.charactersFavorite = data;
     });
+
+    this.charactersDataApi$ = this.charactersApiService.readCharacters();
   }
 
   addcharacter(character: IResultCharacter) {
-    console.log(character);
+    const existsCharacterDb = this.charactersFavorite.some(
+      (value) => value.id === character.id
+    );
 
-    const { thumbnail, id, name, description } = character;
+    if (existsCharacterDb) {
+      console.log('ya esta agregado en la lista');
+      return;
+    }
 
-    const imgUrl: string = `${thumbnail.path}.${thumbnail.extension}`;
+    this.charactersDbService.addCharacter(character).then((data) => {
+      console.log('add succefull', data);
+    });
+  }
 
-    this.charactersFirebaseService.addOne({ id, name, description, imgUrl });
+  deleteCharacter(idDoc: string) {
+    this.charactersDbService
+      .deleteCharacter(idDoc)
+      .then(() => console.log('deleted succefull'))
+      .catch((err) => console.log(err));
   }
 }

@@ -6,13 +6,14 @@ import { Observable, map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CharactersService {
+export class CharactersApiService {
   constructor(private http: HttpClient) {}
 
   readCharacters(): Observable<IResultCharacter[]> {
     const params = {
       apikey: environment.apiKeyPublic,
-      hash: environment.apiKeyPrivate
+      hash: environment.apiKeyPrivate,
+      limit: 50
     };
     return this.http
       .get<IApiMarvelResponse>(`${environment.hostname}/characters`, {

@@ -1,0 +1,14 @@
+<ul>
+  <li *ngFor="let character of this.charactersData">
+    {{ character.name }}
+
+    <img
+      width="50px"
+      height="50px"
+      [src]="character.thumbnail.path + '.' + character.thumbnail.extension"
+      alt=""
+    />
+
+    <button (click)="this.emitCharacterData(character)">add</button>
+  </li>
+</ul>

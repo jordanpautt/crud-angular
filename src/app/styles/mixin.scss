@@ -1,0 +1,22 @@
+@mixin grid-layaout($gridColumns, $gridRows, $gap: 0px) {
+  display: grid;
+  grid-template-columns: $gridColumns;
+  grid-template-rows: $gridRows;
+  gap: $gap;
+}
+
+@mixin flex-layaout($alingItems: flex-start, $justifyContent: flex-start, $gap: 0px, $flexDirection: row) {
+  display: flex;
+  flex-direction: $flexDirection;
+  justify-content: $justifyContent;
+  align-items: $alingItems;
+  gap: $gap;
+}
+
+@mixin box-styles($width: auto, $height: auto, $padding: 0, $borderRadius: 0, $backgroundColor: transparent) {
+  width: $width;
+  height: $height;
+  padding: $padding;
+  border-radius: $background-white;
+  background-color: $backgroundColor;
+}

@@ -1,14 +1,25 @@
 <ul>
   <li *ngFor="let character of this.charactersData">
-    {{ character.name }}
+    <div class="character-info">
+      <img
+        width="50px"
+        height="50px"
+        [src]="character.thumbnail.path + '.' + character.thumbnail.extension"
+        alt=""
+      />
+      <p>
+        {{ character.name.split('(')[0] }}
+      </p>
+      <p style="font-size: 12px" *ngIf="character.name.split('(')[1]">
+        ({{ character.name.split('(')[1] }}
+      </p>
+    </div>
 
-    <img
-      width="50px"
-      height="50px"
-      [src]="character.thumbnail.path + '.' + character.thumbnail.extension"
-      alt=""
-    />
-
-    <button (click)="this.emitCharacterData(character)">add</button>
+    <button
+      (click)="this.emitCharacterData(character)"
+      title="Agregar a favoritos"
+    >
+      <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+    </button>
   </li>
 </ul>

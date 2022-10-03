@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ModalComponent } from './modal/modal.component';
 import { NgModule } from '@angular/core';
-import { TableComponent } from './table/table.component';
 import { ListCharactersComponent } from './list-characters/list-characters.component';
+import { CardCharactersComponent } from './card-characters/card-characters.component';
 
 @NgModule({
-  declarations: [TableComponent, ModalComponent, ListCharactersComponent],
+  declarations: [ListCharactersComponent, CardCharactersComponent],
   imports: [CommonModule],
-  exports: [ListCharactersComponent]
+  exports: [ListCharactersComponent, CardCharactersComponent]
 })
 export class ComponentsModule {}

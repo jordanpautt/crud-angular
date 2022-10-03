@@ -1,14 +1,21 @@
 <div class="page-characters">
-  <section class="page-characters__list" *ngIf="this.charactersDataApi$ | async as characters">
-    <app-list-characters [charactersData]="characters" (outCharacter)="this.addcharacter($event)"></app-list-characters>
+  <section
+    class="page-characters__list"
+    *ngIf="this.charactersDataApi$ | async as characters"
+  >
+    <app-list-characters
+      [charactersData]="characters"
+      (outCharacter)="this.addcharacter($event)"
+    ></app-list-characters>
   </section>
 
   <section class="page-characters__favorite">
-    <div class="card" *ngFor="let character of this.charactersFavorite">
-      {{ character | json }}
-      <button (click)="this.deleteCharacter(character.idDoc || '')">
-        delete
-      </button>
+    <div class="favorite-header">
+      <h1>Lista de Favoritos</h1>
     </div>
+    <app-card-characters
+      [charactersData]="this.charactersFavorite"
+      (outDeleteCharacter)="this.actionsButton($event)"
+    ></app-card-characters>
   </section>
 </div>

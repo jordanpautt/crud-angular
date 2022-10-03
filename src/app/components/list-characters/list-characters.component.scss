@@ -1,0 +1,34 @@
+@import "../../styles/index.scss";
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+li {
+  @include flex-layaout(center, space-between);
+  padding: 6px 12px;
+
+  &:hover {
+    background-color: $background-white;
+  }
+
+  .character-info {
+    @include flex-layaout(center, flex-start, 12px);
+
+    img {
+      border-radius: 100%;
+      box-shadow: $box-shadow-img;
+    }
+  }
+
+  button {
+    @extend .button-base;
+
+    i {
+      font-size: 24px;
+      color: #08bf7c;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "./app/styles/variables.scss";
 * {
   margin: 0;
   padding: 0;
@@ -7,4 +8,10 @@
   text-decoration: none;
   border: none;
   outline: none;
+  box-sizing: border-box;
+}
+
+p {
+  font-family: $font-roboto-bold;
+  color: $font-color;
 }

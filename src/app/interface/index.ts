@@ -3,7 +3,6 @@ export interface IApiMarvelResponse {
   status: string;
   code: number;
 }
-
 export interface IDataResponse {
   count: number;
   limit: number;
@@ -11,7 +10,6 @@ export interface IDataResponse {
   total: number;
   results: IResultCharacter[];
 }
-
 export interface IResultCharacter {
   id: number;
   name: string;
@@ -20,8 +18,17 @@ export interface IResultCharacter {
     extension: string;
   };
 }
-
 export interface ICharacterDb extends Omit<IResultCharacter, 'thumbnail'> {
   idDoc?: string;
   imgUrl: string;
+}
+
+export interface IbuttonOption {
+  type: 'edit' | 'delete';
+  icon: string;
+  color: string;
+}
+
+export interface IbuttonEmit extends Pick<IbuttonOption, 'type'> {
+  data: ICharacterDb;
 }

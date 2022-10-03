@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CharactersApiService } from 'src/app/services/characters.service';
-import { ICharacterDb, IResultCharacter } from 'src/app/interface';
+import { IbuttonEmit, ICharacterDb, IResultCharacter } from 'src/app/interface';
 import { CharactersFirebaseService } from 'src/app/services/characters-firebase.service';
 import { Observable } from 'rxjs';
 
@@ -41,10 +41,14 @@ export class CharactersComponent implements OnInit {
     });
   }
 
-  deleteCharacter(idDoc: string) {
-    this.charactersDbService
-      .deleteCharacter(idDoc)
-      .then(() => console.log('deleted succefull'))
-      .catch((err) => console.log(err));
+  actionsButton(dataAction: IbuttonEmit) {
+    const { data, type } = dataAction;
+
+    if (type === 'delete') {
+      this.charactersDbService
+        .deleteCharacter(data.idDoc || '')
+        .then(() => console.log('deleted succefull'))
+        .catch((err) => console.log(err));
+    }
   }
 }

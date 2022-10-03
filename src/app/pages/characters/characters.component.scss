@@ -1,7 +1,26 @@
+@import "../../styles/index.scss";
+
 .page-characters {
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  overflow-y: hidden;
+  @include box-styles(auto, calc(100vh - 70px), 0 10px);
+  @include grid-layaout(1fr 3fr, null, 12px);
+
+  > section {
+    background-color: rgb(245, 245, 245);
+    border-radius: 4px;
+    @extend .overflow-y;
+  }
+}
+
+.favorite-header {
+  height: 40px;
+  background-color: #cc66cc;
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  h1 {
+    margin: auto;
+    color: #ffffff;
+    font-family: $font-roboto-regular;
+  }
 }

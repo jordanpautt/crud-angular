@@ -1,0 +1,12 @@
+@import "./styles/index.scss";
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  @include grid-layaout(null, 60px auto, 10px);
+
+  .app__header {
+    background-color: $pigmetRed;
+    @extend .center-content;
+  }
+}

@@ -14,7 +14,7 @@ export class CharactersFirebaseService {
   private dbPath = '/characters';
   characterRef!: AngularFirestoreCollection<ICharacterDb>;
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(firestore: AngularFirestore) {
     this.characterRef = firestore.collection(this.dbPath);
   }
 

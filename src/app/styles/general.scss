@@ -1,0 +1,16 @@
+.overflow-y {
+  height: auto;
+  overflow-y: auto;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-base {
+  cursor: pointer;
+  background-color: transparent;
+  padding: 2px 4px;
+}

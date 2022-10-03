@@ -1,0 +1,29 @@
+@import "../../styles/index.scss";
+
+.card {
+  @include grid-layaout(repeat(auto-fill, minmax(230px, 1fr)), null, 26px 10px);
+  padding: 10px 12px;
+
+  .cards-content {
+    @include box-styles(230px, 160px, 0, 8px);
+    box-shadow: $box-shadow-img;
+    position: relative;
+    display: flex;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.04);
+    }
+
+    .cards-content__info {
+      @include box-styles(100%, 30px, 0 6px, 0, rgba(255, 255, 255, 0.76));
+      @include flex-layaout(center, space-between);
+      position: absolute;
+      align-self: end;
+
+      button {
+        @extend .button-base;
+      }
+    }
+  }
+}

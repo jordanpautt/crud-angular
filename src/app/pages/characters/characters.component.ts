@@ -3,6 +3,7 @@ import { CharactersApiService } from 'src/app/services/characters.service';
 import { IbuttonEmit, ICharacterDb, IResultCharacter } from 'src/app/interface';
 import { CharactersFirebaseService } from 'src/app/services/characters-firebase.service';
 import { Observable } from 'rxjs';
+import { ToastAlertService } from 'src/app/services/toast-alert.service';
 
 @Component({
   selector: 'app-characters',
@@ -15,7 +16,8 @@ export class CharactersComponent implements OnInit {
 
   constructor(
     private charactersApiService: CharactersApiService,
-    private charactersDbService: CharactersFirebaseService
+    private charactersDbService: CharactersFirebaseService,
+    private toastService: ToastAlertService
   ) {}
 
   ngOnInit(): void {
@@ -32,23 +34,37 @@ export class CharactersComponent implements OnInit {
     );
 
     if (existsCharacterDb) {
-      console.log('ya esta agregado en la lista');
+      this.toastService.toastInfo(
+        'El personaje ya esta agregado en favoritos!'
+      );
       return;
     }
 
-    this.charactersDbService.addCharacter(character).then((data) => {
-      console.log('add succefull', data);
-    });
+    this.charactersDbService
+      .addCharacter(character)
+      .then(() =>
+        this.toastService.toastSuccess('¡Personaje agregado con exito!')
+      )
+      .catch((err) => this.toastService.toastError(`${err}`));
   }
 
   actionsButton(dataAction: IbuttonEmit) {
     const { data, type } = dataAction;
 
-    if (type === 'delete') {
+    if (type === 'edit') {
+      this.charactersDbService
+        .updateCharacter(data.idDoc || '', data.name)
+        .then(() =>
+          this.toastService.toastSuccess('¡Personaje Modificado con exito!')
+        )
+        .catch((err) => this.toastService.toastError(`${err}`));
+    } else {
       this.charactersDbService
         .deleteCharacter(data.idDoc || '')
-        .then(() => console.log('deleted succefull'))
-        .catch((err) => console.log(err));
+        .then(() =>
+          this.toastService.toastSuccess('¡Personaje eliminado con exito!')
+        )
+        .catch((err) => this.toastService.toastError(`${err}`));
     }
   }
 }

@@ -1,5 +1,8 @@
 <div class="card">
-  <div class="cards-content" *ngFor="let character of this.charactersData">
+  <div
+    class="cards-content"
+    *ngFor="let character of this.charactersData"
+  >
     <img
       width="100%"
       height="100%"
@@ -13,11 +16,17 @@
       </p>
 
       <div class="button-content">
-
-        <button *ngFor="let button of this.buttonsOption" (click)="this.actionButton(character, button.type)">
-          <i [class]="button.icon" [style.color]="button.color" style="font-size: 24px;" aria-hidden="true"></i>
+        <button
+          *ngFor="let button of this.buttonsOption"
+          (click)="this.actionButton(character, button.type)"
+        >
+          <i
+            [class]="button.icon"
+            [style.color]="button.color"
+            style="font-size: 24px"
+            aria-hidden="true"
+          ></i>
         </button>
-
       </div>
     </div>
   </div>

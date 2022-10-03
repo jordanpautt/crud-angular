@@ -1,11 +1,11 @@
 @import "../../styles/index.scss";
 
 .card {
-  @include grid-layaout(repeat(auto-fill, minmax(230px, 1fr)), null, 26px 10px);
+  @include grid-layaout(repeat(auto-fill, minmax(210px, 1fr)), null, 26px 10px);
   padding: 10px 12px;
 
   .cards-content {
-    @include box-styles(230px, 160px, 0, 8px);
+    @include box-styles(210px, 160px, 0, 8px);
     box-shadow: $box-shadow-img;
     position: relative;
     display: flex;

@@ -42,6 +42,10 @@ export class CharactersFirebaseService {
     });
   }
 
+  updateCharacter(idDoc: string, name: string): Promise<void> {
+    return this.characterRef.doc(idDoc).update({ name });
+  }
+
   deleteCharacter(idDoc: string): Promise<void> {
     return this.characterRef.doc(idDoc).delete();
   }

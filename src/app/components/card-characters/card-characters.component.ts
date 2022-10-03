@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IbuttonEmit, IbuttonOption, ICharacterDb } from 'src/app/interface';
-
+import { ToastAlertService } from 'src/app/services/toast-alert.service';
 @Component({
   selector: 'app-card-characters',
   templateUrl: './card-characters.component.html',
@@ -8,10 +8,11 @@ import { IbuttonEmit, IbuttonOption, ICharacterDb } from 'src/app/interface';
 })
 export class CardCharactersComponent implements OnInit {
   @Input() charactersData: ICharacterDb[] = [];
-  @Output() outDeleteCharacter: EventEmitter<IbuttonEmit> = new EventEmitter();
+  @Output() outActionCharacter: EventEmitter<IbuttonEmit> = new EventEmitter();
 
   buttonsOption: IbuttonOption[] = [];
-  constructor() {}
+
+  constructor(private toast: ToastAlertService) {}
 
   ngOnInit(): void {
     this.buttonsOption = [
@@ -28,7 +29,15 @@ export class CardCharactersComponent implements OnInit {
     ];
   }
 
-  actionButton(character: ICharacterDb, type: 'edit' | 'delete') {
-    this.outDeleteCharacter.emit({ data: character, type });
+  async actionButton(character: ICharacterDb, type: 'edit' | 'delete') {
+    if (type === 'edit') {
+      const name = await this.toast.openModalEdit(character.name);
+      this.outActionCharacter.emit({
+        data: { ...character, name },
+        type
+      });
+    } else {
+      this.outActionCharacter.emit({ data: character, type });
+    }
   }
 }

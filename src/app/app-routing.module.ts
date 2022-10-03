@@ -18,6 +18,10 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'characters'
+  },
+  {
+    path: '**',
+    redirectTo: 'characters'
   }
 ];
 
